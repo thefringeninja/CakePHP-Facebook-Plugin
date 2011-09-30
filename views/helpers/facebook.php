@@ -453,6 +453,8 @@ class FacebookHelper extends AppHelper {
 			$options = array();
 		}
 		if ($appId = FacebookInfo::getConfig('appId')) {
+			$status = FacebookInfo::getConfig('status') ?: true;
+			$status = $status ? 'true' : 'false';
 			$session = json_encode($this->Session->read('FB.Session'));
 			if ($reload) {
 				$callback = "FB.Event.subscribe('auth.login',function(){window.location.reload()});";
@@ -465,7 +467,7 @@ class FacebookHelper extends AppHelper {
 window.fbAsyncInit = function() {
 	FB.init({
 		appId : '{$appId}',
-		status : true, // check login status
+		status : {$status}, // check login status
 		cookie : true, // enable cookies to allow the server to access the session
 		xfbml : true, // parse XFBML
 		oauth : true // use Oauth
