@@ -453,7 +453,7 @@ class FacebookHelper extends AppHelper {
 			$options = array();
 		}
 		if ($appId = FacebookInfo::getConfig('appId')) {
-			$status = FacebookInfo::getConfig('status') ?: true;
+			$status = FacebookInfo::getConfig('status');
 			$status = $status ? 'true' : 'false';
 			$session = json_encode($this->Session->read('FB.Session'));
 			if ($reload) {
